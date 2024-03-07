@@ -170,3 +170,6 @@ taskuuid：对应的是每个方法名称
 gameuuid：一场比赛对应的uuid，在某个地方可以修改（页面上或者哪里），测试可以使用页面上的
 teamuuid：每个队伍对应的uuid，查询队伍的时候会返回给我
 uuid：应援的uuid，是添加应援的时候，返回给我
+secUid：加密后的ID 拼接得到主页
+displayId：抖音号
+https://www.douyin.com/user/MS4wLjABAAAAxQRAOta5NNnJI5WH5nVaoFHuOSu1SpMkaMxeP9nmCxHhIgZ-cm8liAxQxjY-SH_3

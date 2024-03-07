@@ -1,35 +1,34 @@
-import _thread
 import binascii
 import gzip
 import json
-import os
-import signal
-import sys
 
-from config import LIVE_GIFT_LIST
-from src.utils.logger import logger
+from utils.config import LIVE_GIFT_LIST
+from utils.logger import logger
 import re
 import time
 import requests
 import websocket
-from src.utils.ws_send import ws_send, ws_sender
-from src import live_rank
-from src.utils.common import GlobalVal
+from utils.ws_send import ws_sender
+import live_rank
+from utils.common import GlobalVal
 from protobuf_inspector.types import StandardParser
 from google.protobuf import json_format
-from proto.dy_pb2 import PushFrame
-from proto.dy_pb2 import Response
-from proto.dy_pb2 import MatchAgainstScoreMessage
-from proto.dy_pb2 import LikeMessage
-from proto.dy_pb2 import MemberMessage
-from proto.dy_pb2 import GiftMessage
-from proto.dy_pb2 import ChatMessage
-from proto.dy_pb2 import SocialMessage
-from proto.dy_pb2 import RoomUserSeqMessage
-from proto.dy_pb2 import UpdateFanTicketMessage
-from proto.dy_pb2 import CommonTextMessage
-from proto.dy_pb2 import ProductChangeMessage
+from dy_pb2 import PushFrame
+from dy_pb2 import Response
+from dy_pb2 import MatchAgainstScoreMessage
+from dy_pb2 import LikeMessage
+from dy_pb2 import MemberMessage
+from dy_pb2 import GiftMessage
+from dy_pb2 import ChatMessage
+from dy_pb2 import SocialMessage
+from dy_pb2 import RoomUserSeqMessage
+from dy_pb2 import UpdateFanTicketMessage
+from dy_pb2 import CommonTextMessage
+from dy_pb2 import ProductChangeMessage
+import threading
+from ob_data_item import ObDataItem
 
+ob_data = []
 # 直播信息全局变量
 liveRoomId = ""
 ttwid = ""
@@ -84,7 +83,7 @@ def onMessage(ws: websocket.WebSocketApp, message: bytes):
             unPackWebcastSocialMessage(msg.payload)
             continue
 
-        # 房间用户发送消息
+        # 用户序列信息
         if msg.method == 'WebcastRoomUserSeqMessage':
             unPackWebcastRoomUserSeqMessage(msg.payload)
             continue
@@ -106,6 +105,7 @@ def onMessage(ws: websocket.WebSocketApp, message: bytes):
         logger.info('[onMessage] [待解析方法' + msg.method + '等待解析～] [房间Id：' + liveRoomId + ']')
 
 
+# 公共文本消息
 def unPackWebcastCommonTextMessage(data):
     commonTextMessage = CommonTextMessage()
     commonTextMessage.ParseFromString(data)
@@ -115,6 +115,7 @@ def unPackWebcastCommonTextMessage(data):
     return data
 
 
+# 商品改变消息
 def WebcastProductChangeMessage(data):
     commonTextMessage = ProductChangeMessage()
     commonTextMessage.ParseFromString(data)
@@ -123,6 +124,7 @@ def WebcastProductChangeMessage(data):
     logger.info('[WebcastProductChangeMessage] [] [房间Id：' + liveRoomId + '] | ' + log)
 
 
+# 更新粉丝票
 def unPackWebcastUpdateFanTicketMessage(data):
     updateFanTicketMessage = UpdateFanTicketMessage()
     updateFanTicketMessage.ParseFromString(data)
@@ -132,6 +134,7 @@ def unPackWebcastUpdateFanTicketMessage(data):
     return data
 
 
+# 用户序列信息
 def unPackWebcastRoomUserSeqMessage(data):
     roomUserSeqMessage = RoomUserSeqMessage()
     roomUserSeqMessage.ParseFromString(data)
@@ -141,21 +144,33 @@ def unPackWebcastRoomUserSeqMessage(data):
     return data
 
 
+# 直播间关注消息
 def unPackWebcastSocialMessage(data):
     socialMessage = SocialMessage()
     socialMessage.ParseFromString(data)
     data = json_format.MessageToDict(socialMessage, preserving_proto_field_name=True)
+    global ob_data
+    ob_data_item = ObDataItem(nickname=data['user']['nickName'], account=data['user']['displayId'], message_type="关注",
+                              message_content='关注了直播间', gender='',
+                              profile_url=f"https://www.douyin.com/user/{data['user']['secUid']}")
+    ob_data.append(ob_data_item)
     log = json.dumps(data, ensure_ascii=False)
     logger.info('[unPackWebcastSocialMessage] [➕直播间关注消息] [房间Id：' + liveRoomId + '] | ' + log)
     return data
 
 
-# 普通消息
+# 普通聊天消息
 def unPackWebcastChatMessage(data):
     GlobalVal.commit_num += 1
     chatMessage = ChatMessage()
     chatMessage.ParseFromString(data)
     data = json_format.MessageToDict(chatMessage, preserving_proto_field_name=True)
+    global ob_data
+    ob_data_item = ObDataItem(nickname=data['user']['nickName'], account=data['user']['displayId'], message_type="聊天",
+                              message_content=data['content'],
+                              gender='男',
+                              profile_url=f"https://www.douyin.com/user/{data['user']['secUid']}")
+    ob_data.append(ob_data_item)
     log = json.dumps(data, ensure_ascii=False)
     logger.info(
         f'[unPackWebcastChatMessage] [直播间弹幕消息{GlobalVal.commit_num}] [房间Id：' + liveRoomId + '] | ' + log)
@@ -167,6 +182,12 @@ def unPackWebcastGiftMessage(data):
     giftMessage = GiftMessage()
     giftMessage.ParseFromString(data)
     data = json_format.MessageToDict(giftMessage, preserving_proto_field_name=True)
+    global ob_data
+    ob_data_item = ObDataItem(nickname=data['user']['nickName'], account=data['user']['displayId'], message_type="礼物",
+                              message_content=data['common']['describe'],
+                              gender='男',
+                              profile_url=f"https://www.douyin.com/user/{data['user']['secUid']}")
+    ob_data.append(ob_data_item)
     try:
         gift_name = data.get("gift").get("name")
         nick_name = data.get("user").get("nickName")
@@ -186,7 +207,7 @@ def unPackWebcastGiftMessage(data):
         logger.error(f"解析礼物数据出错: {e}")
     log = json.dumps(data, ensure_ascii=False)
     logger.info(
-        f'[unPackWebcastGiftMessage] [直播间礼物消息{GlobalVal.gift_num}:{GlobalVal.gift_value}] [房间Id：' + liveRoomId + '] ' + log)
+        f'[unPackWebcastGiftMessage] [直播间礼物消息{GlobalVal.gift_num}:{GlobalVal.gift_value}] [房间Id：' + liveRoomId + '] | ' + log)
     return data
 
 
@@ -196,6 +217,11 @@ def unPackWebcastMemberMessage(data):
     memberMessage = MemberMessage()
     memberMessage.ParseFromString(data)
     data = json_format.MessageToDict(memberMessage, preserving_proto_field_name=True)
+    global ob_data
+    ob_data_item = ObDataItem(nickname=data['user']['nickName'], account=data['user']['displayId'], message_type="进入",
+                              message_content='进入了直播间', gender='男',
+                              profile_url=f"https://www.douyin.com/user/{data['user']['secUid']}")
+    ob_data.append(ob_data_item)
     # 直播间人数统计
     member_num = int(data.get("memberCount", 0))
     log = json.dumps(data, ensure_ascii=False)
@@ -208,6 +234,11 @@ def unPackWebcastLikeMessage(data):
     likeMessage = LikeMessage()
     likeMessage.ParseFromString(data)
     data = json_format.MessageToDict(likeMessage, preserving_proto_field_name=True)
+    global ob_data
+    ob_data_item = ObDataItem(nickname=data['user']['nickName'], account=data['user']['displayId'], message_type="点赞",
+                              message_content='点赞了直播间', gender='男',
+                              profile_url=f"https://www.douyin.com/user/{data['user']['secUid']}")
+    ob_data.append(ob_data_item)
     # like_num = int(data["total"])
     GlobalVal.like_num = int(data.get("total", 0))
     log = json.dumps(data, ensure_ascii=False)
@@ -215,6 +246,7 @@ def unPackWebcastLikeMessage(data):
     return data
 
 
+# 反对分数消息
 # 解析WebcastMatchAgainstScoreMessage消息包体
 def unPackMatchAgainstScoreMessage(data):
     matchAgainstScoreMessage = MatchAgainstScoreMessage()
@@ -240,6 +272,10 @@ def onError(ws, error):
     logger.error('[onError] [webSocket Error事件] [房间Id：' + liveRoomId + ']')
 
 
+# 用于停止ping心跳进程,wss进程
+stop_event = threading.Event()
+
+
 def onClose(ws, a, b):
     # 统计最后的数据
     end_time = time.time()
@@ -249,25 +285,34 @@ def onClose(ws, a, b):
     # 将消息发送到我们自己的服务器
     # ws_sender(total_info)
     logger.info('[onClose] [webSocket Close事件] [房间Id：' + liveRoomId + ']')
-    # 直播结束退出程序
-    pid = os.getpid()  # 获取当前进程的PID
-    os.kill(pid, signal.SIGTERM)
+    stop_event.set()
+    # # 直播结束退出程序
+    # pid = os.getpid()  # 获取当前进程的PID
+    # os.kill(pid, signal.SIGTERM)
 
 
 def onOpen(ws):
-    _thread.start_new_thread(ping, (ws,))
+    # 启动新线程每10s发送心跳包
+    thread = threading.Thread(target=ping, args=(ws, stop_event))
+    thread.start()
+    # _thread.start_new_thread(ping, (ws,))
     logger.info('[onOpen] [webSocket Open事件] [房间Id：' + liveRoomId + ']')
 
 
 # 发送ping心跳包
-def ping(ws):
-    while True:
-        obj = PushFrame()
-        obj.payloadType = 'hb'
-        data = obj.SerializeToString()
-        ws.send(data, websocket.ABNF.OPCODE_BINARY)
-        logger.info('[ping] [💗发送ping心跳] [房间Id：' + liveRoomId + '] ====> 房间🏖标题【' + liveRoomTitle + '】')
-        time.sleep(10)
+def ping(ws, stop_event):
+    while not stop_event.is_set():
+        if ws.sock and ws.sock.connected:
+            obj = PushFrame()
+            obj.payloadType = 'hb'
+            data = obj.SerializeToString()
+            ws.send(data, websocket.ABNF.OPCODE_BINARY)
+            logger.info('[ping] [💗发送ping心跳] [房间Id：' + liveRoomId + '] ====> 房间🏖标题【' + liveRoomTitle + '】')
+            time.sleep(10)
+        else:
+            print("ws连接已终止")
+            break
+    print("发送心跳线程结束")
 
 
 def wssServerStart():
@@ -284,7 +329,7 @@ def wssServerStart():
         on_open=onOpen,
         header=h
     )
-    ws.run_forever()
+    return ws
 
 
 def parseLiveRoomUrl(url):
@@ -345,7 +390,10 @@ def parseLiveRoomUrl(url):
     # 开始获取直播间排行
     live_rank.interval_rank(liveRoomId)
     # 创建websocket客户端，并开始监听消息
-    wssServerStart()
+    ws = wssServerStart()
+    thread = threading.Thread(target=ws.run_forever)
+    thread.start()
+    return ws, thread
 
 
 # 十六进制字符串转protobuf格式 （用于快手网页websocket调试分析包体结构）

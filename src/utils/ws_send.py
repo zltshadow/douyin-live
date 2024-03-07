@@ -1,6 +1,6 @@
 import websocket
 import threading
-from config import LIVE_WEB_SEND
+from utils.config import LIVE_WEB_SEND
 
 
 def on_open(ws):

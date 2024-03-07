@@ -1,7 +1,7 @@
 import logging
 import os
 
-from config import LOG_FILE_SAVE, LOG_FILE_NAME, LOG_LEVEL
+from utils.config import LOG_FILE_SAVE, LOG_FILE_NAME, LOG_LEVEL
 
 # 第一步：创建文件日志对象
 logger = logging.getLogger()

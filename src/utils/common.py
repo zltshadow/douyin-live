@@ -1,6 +1,6 @@
 import requests
 import json
-from config import LIVE_WEB_SEND_URL, GAME_UUID, DONATION_UUID
+from utils.config import LIVE_WEB_SEND_URL, GAME_UUID, DONATION_UUID
 
 
 class GlobalVal(object):

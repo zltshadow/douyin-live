@@ -2,8 +2,8 @@ import json
 import threading
 import time
 import requests
-from config import DONATION_UUID, LIVE_WEB_SEND_URL, LIVE_HTTP_SEND, LIVE_SEND_INTERVAL
-from src.utils.common import GlobalVal
+from utils.config import DONATION_UUID, LIVE_WEB_SEND_URL, LIVE_HTTP_SEND, LIVE_SEND_INTERVAL
+from common import GlobalVal
 
 
 def sender():

@@ -1,0 +1,342 @@
+{
+  "关注消息": {
+    "common": {
+      "method": "WebcastSocialMessage",
+      "msgId": "7330443046930582298",
+      "roomId": "7330423567261289227",
+      "isShowMsg": true,
+      "priorityScore": "41000"
+    },
+    "user": {
+      "id": "4054599815150163",
+      "shortId": "3498933713",
+      "nickName": "用户3435539367977",
+      "AvatarThumb": {
+        "urlListList": [
+          "https://p6.douyinpic.com/aweme/100x100/aweme-avatar/mosaic-legacy_313ee0002a9c2254498a6.jpeg?from=3067671334",
+          "https://p3.douyinpic.com/aweme/100x100/aweme-avatar/mosaic-legacy_313ee0002a9c2254498a6.jpeg?from=3067671334",
+          "https://p26.douyinpic.com/aweme/100x100/aweme-avatar/mosaic-legacy_313ee0002a9c2254498a6.jpeg?from=3067671334"
+        ],
+        "uri": "100x100/aweme-avatar/mosaic-legacy_313ee0002a9c2254498a6"
+      },
+      "BadgeImageList": [
+        {
+          "urlListList": [
+            "http://p11-webcast.douyinpic.com/img/webcast/new_user_grade_level_v1_1.png~tplv-obj.image",
+            "http://p3-webcast.douyinpic.com/img/webcast/new_user_grade_level_v1_1.png~tplv-obj.image",
+            "http://p6-webcast.douyinpic.com/img/webcast/new_user_grade_level_v1_1.png~tplv-obj.image"
+          ],
+          "uri": "webcast/new_user_grade_level_v1_1.png",
+          "height": "16",
+          "width": "32",
+          "imageType": 1,
+          "content": {
+            "level": "1",
+            "alternativeText": "荣誉等级1级勋章"
+          }
+        }
+      ],
+      "FollowInfo": {
+        "followingCount": "5939",
+        "followerCount": "95",
+        "followStatus": "1",
+        "followerCountStr": "95",
+        "followingCountStr": "5939"
+      },
+      "displayId": "dy3yh7o7bq1w",
+      "secUid": "MS4wLjABAAAA5IneY_jqDZlHviB_3o-Vf3D_oN3obVq3vy2HiJt6UFwjPRIguee7zHKPYvzJ-F-N"
+    },
+    "action": "1",
+    "shareTarget": "82771126029",
+    "followCount": "10472093",
+    "publicAreaCommon": {}
+  },
+  "聊天消息": {
+    "common": {
+      "method": "WebcastChatMessage",
+      "msgId": "7330238896595178546",
+      "roomId": "7330103138337901375",
+      "isShowMsg": true,
+      "priorityScore": "31000"
+    },
+    "user": {
+      "id": "3109043938536109",
+      "shortId": "2829663156",
+      "nickName": "B哥Ak没我准",
+      "gender": 1,
+      "AvatarThumb": {
+        "urlListList": [
+          "https://p26.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-i-0813c001_1b33f751addc479381082f456b8baada.jpeg?from=3067671334"
+        ]
+      },
+      "BadgeImageList": [
+        {
+          "urlListList": [
+            "http://p3-webcast.douyinpic.com/img/webcast/new_user_grade_level_v1_26.png~tplv-obj.image"
+          ],
+          "height": "16",
+          "width": "32",
+          "imageType": 1,
+          "content": {
+            "level": "26",
+            "alternativeText": "荣誉等级26级勋章"
+          }
+        }
+      ],
+      "FollowInfo": {
+        "followingCount": "914",
+        "followerCount": "313",
+        "followStatus": "1",
+        "followerCountStr": "0",
+        "followingCountStr": "0"
+      },
+      "displayId": "kelemoran546",
+      "secUid": "MS4wLjABAAAAB02oLevnE-NpkSESeaapHnCE80YNjiptB0Rpc2oqB9N3oOva5F2GGxy1zmys_VXx"
+    },
+    "content": "把主播送赵刚",
+    "giftImage": {
+      "urlListList": [
+        "\nRhttp://p11-webcast.douyinpic.com/img/webcast/userlabel_new_chat.png~tplv-obj.image*\u0007#E0C8BC"
+      ],
+      "width": "50"
+    },
+    "eventTime": "1706704241"
+  },
+  "礼物消息": {
+    "common": {
+      "method": "WebcastGiftMessage",
+      "msgId": "7330435881188627490",
+      "roomId": "7330423567261289227",
+      "createTime": "1706750124",
+      "isShowMsg": true,
+      "describe": "溶解:送给主播 1个小心心",
+      "priorityScore": "31000"
+    },
+    "giftId": "463",
+    "groupCount": "1",
+    "repeatCount": "1",
+    "comboCount": "1",
+    "user": {
+      "id": "3601655281223256",
+      "shortId": "3548458441",
+      "nickName": "溶解",
+      "AvatarThumb": {
+        "urlListList": [
+          "https://p6.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-avt-0015_db2f485c477396a211f18b065bea43ac.jpeg?from=3067671334",
+          "https://p3.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-avt-0015_db2f485c477396a211f18b065bea43ac.jpeg?from=3067671334",
+          "https://p26.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-avt-0015_db2f485c477396a211f18b065bea43ac.jpeg?from=3067671334"
+        ],
+        "uri": "100x100/aweme-avatar/tos-cn-avt-0015_db2f485c477396a211f18b065bea43ac"
+      },
+      "BadgeImageList": [
+        {
+          "urlListList": [
+            "http://p3-webcast.douyinpic.com/img/webcast/new_user_grade_level_v1_12.png~tplv-obj.image",
+            "http://p11-webcast.douyinpic.com/img/webcast/new_user_grade_level_v1_12.png~tplv-obj.image",
+            "http://p6-webcast.douyinpic.com/img/webcast/new_user_grade_level_v1_12.png~tplv-obj.image"
+          ],
+          "uri": "webcast/new_user_grade_level_v1_12.png",
+          "height": "16",
+          "width": "32",
+          "imageType": 1,
+          "content": {
+            "level": "12",
+            "alternativeText": "荣誉等级12级勋章"
+          }
+        }
+      ],
+      "FollowInfo": {
+        "followingCount": "471",
+        "followerCount": "39",
+        "followerCountStr": "39",
+        "followingCountStr": "471"
+      },
+      "displayId": "bianbian8576",
+      "secUid": "MS4wLjABAAAAnHqavZo7u23erxInppJDujMVV4dici1fqPqtpHR-SIXFZI9tK2NkNVvQMLayqFEV"
+    },
+    "repeatEnd": 1,
+    "groupId": "1706750121",
+    "gift": {
+      "image": {
+        "urlListList": [
+          "http://p3-webcast.douyinpic.com/img/webcast/154c9946db73cba98529ab66792e5385.png~tplv-obj.png",
+          "http://p11-webcast.douyinpic.com/img/webcast/154c9946db73cba98529ab66792e5385.png~tplv-obj.png",
+          "http://p6-webcast.douyinpic.com/img/webcast/154c9946db73cba98529ab66792e5385.png~tplv-obj.png"
+        ],
+        "uri": "webcast/154c9946db73cba98529ab66792e5385.png",
+        "avgColor": "#53737A"
+      },
+      "describe": "送出小心心",
+      "id": "463",
+      "forLinkmic": true,
+      "combo": true,
+      "type": 1,
+      "diamondCount": 1,
+      "isDisplayedOnPanel": true,
+      "name": "小心心",
+      "icon": {
+        "urlListList": [
+          "http://p3-webcast.douyinpic.com/img/webcast/154c9946db73cba98529ab66792e5385.png~tplv-obj.png",
+          "http://p11-webcast.douyinpic.com/img/webcast/154c9946db73cba98529ab66792e5385.png~tplv-obj.png",
+          "http://p6-webcast.douyinpic.com/img/webcast/154c9946db73cba98529ab66792e5385.png~tplv-obj.png"
+        ],
+        "uri": "webcast/154c9946db73cba98529ab66792e5385.png",
+        "avgColor": "#BCD9E0"
+      }
+    },
+    "publicAreaCommon": {
+      "userLabel": {
+        "urlListList": [
+          "http://p3-webcast.douyinpic.com/img/webcast/userlabel_new_watch.png~tplv-obj.image",
+          "http://p11-webcast.douyinpic.com/img/webcast/userlabel_new_watch.png~tplv-obj.image",
+          "http://p6-webcast.douyinpic.com/img/webcast/userlabel_new_watch.png~tplv-obj.image"
+        ],
+        "uri": "webcast/userlabel_new_watch.png",
+        "avgColor": "#607A53"
+      }
+    },
+    "trayDisplayText": {
+      "key": "webcast_aweme_tray_message_to_anchor",
+      "defaultPatter": "送{0}",
+      "defaultFormat": {
+        "color": "#B3FFFFFF",
+        "weight": 400,
+        "useRemoteClor": true
+      },
+      "piecesList": [
+        {
+          "type": true,
+          "format": {
+            "color": "#B3FFFFFF",
+            "weight": 400,
+            "useRemoteClor": true
+          }
+        }
+      ]
+    },
+    "totalCount": "1",
+    "clientGiftSource": 1,
+    "sendTime": "1706750120651",
+    "traceId": "ec77b418a1541188e09c92c969cbb540"
+  },
+  "进入消息": {
+    "common": {
+      "method": "WebcastMemberMessage",
+      "msgId": "7330435965071402536",
+      "roomId": "7330423567261289227",
+      "isShowMsg": true,
+      "foldType": "1",
+      "anchorFoldType": "1",
+      "priorityScore": "42000",
+      "anchorFoldTypeV2": "3"
+    },
+    "user": {
+      "id": "355876414437443",
+      "shortId": "2238531842",
+      "nickName": "幽灵潜艇",
+      "gender": 1,
+      "AvatarThumb": {
+        "urlListList": [
+          "https://p6.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-i-0813_o4AAZihIEAglUdENdzfDSbAccyeRwAAjzCs9AN.jpeg?from=3067671334"
+        ]
+      },
+      "BadgeImageList": [
+        {
+          "urlListList": [
+            "http://p3-webcast.douyinpic.com/img/webcast/new_user_grade_level_v1_9.png~tplv-obj.image"
+          ],
+          "height": "16",
+          "width": "32",
+          "imageType": 1,
+          "content": {
+            "level": "9",
+            "alternativeText": "荣誉等级9级勋章"
+          }
+        }
+      ],
+      "FollowInfo": {
+        "followingCount": "1957",
+        "followerCount": "86",
+        "followerCountStr": "86",
+        "followingCountStr": "1957"
+      },
+      "displayId": "2238531842",
+      "secUid": "MS4wLjABAAAA85fBNyErGrp3sCgLw-U80wL_ORVFm9ZL734-GIwm27A"
+    },
+    "memberCount": "8000",
+    "action": "1",
+    "anchorDisplayText": {
+      "key": "live_room_enter_toast",
+      "defaultPatter": "{0:user} 来了{1:string}",
+      "defaultFormat": {
+        "color": "#b8ffffff",
+        "weight": 400
+      },
+      "piecesList": [
+        {
+          "type": true,
+          "format": {
+            "color": "#8CE7FF",
+            "weight": 400
+          }
+        }
+      ]
+    },
+    "publicAreaCommon": {}
+  },
+  "点赞": {
+    "common": {
+      "method": "WebcastLikeMessage",
+      "msgId": "7330435966305723147",
+      "roomId": "7330423567261289227",
+      "isShowMsg": true,
+      "anchorFoldType": "1",
+      "anchorFoldTypeV2": "1"
+    },
+    "count": "32",
+    "total": "57146",
+    "user": {
+      "id": "2088675257103467",
+      "shortId": "2356200032",
+      "nickName": "浩广专业不锈钢   楼梯扶手、不锈钢大门",
+      "gender": 1,
+      "AvatarThumb": {
+        "urlListList": [
+          "https://p6.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-i-0813_fb325b0e619d448ca8f1cfc37c1b7752.jpeg?from=3067671334",
+          "https://p11.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-i-0813_fb325b0e619d448ca8f1cfc37c1b7752.jpeg?from=3067671334",
+          "https://p3.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-i-0813_fb325b0e619d448ca8f1cfc37c1b7752.jpeg?from=3067671334"
+        ],
+        "uri": "100x100/aweme-avatar/tos-cn-i-0813_fb325b0e619d448ca8f1cfc37c1b7752"
+      },
+      "BadgeImageList": [
+        {
+          "urlListList": [
+            "http://p11-webcast.douyinpic.com/img/webcast/new_user_grade_level_v1_7.png~tplv-obj.image",
+            "http://p3-webcast.douyinpic.com/img/webcast/new_user_grade_level_v1_7.png~tplv-obj.image",
+            "http://p6-webcast.douyinpic.com/img/webcast/new_user_grade_level_v1_7.png~tplv-obj.image"
+          ],
+          "uri": "webcast/new_user_grade_level_v1_7.png",
+          "height": "16",
+          "width": "32",
+          "imageType": 1,
+          "content": {
+            "level": "7",
+            "alternativeText": "荣誉等级7级勋章"
+          }
+        }
+      ],
+      "FollowInfo": {
+        "followingCount": "409",
+        "followerCount": "126",
+        "followStatus": "1",
+        "followerCountStr": "126",
+        "followingCountStr": "409"
+      },
+      "displayId": "haoguangzhua17",
+      "secUid": "MS4wLjABAAAARk-BAhJ7v5RkeSYPzK_IUs5AmhQFM2lr1X1rc_NpsKoghfezGkk_QoJ2FtD0YRpo"
+    },
+    "displayControlInfo": {
+      "showIcons": true
+    }
+  }
+}
